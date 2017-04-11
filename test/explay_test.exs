@@ -13,7 +13,6 @@ defmodule ExPlayTest do
   end
 
   test "Authentication" do
-    # Save this account object to later use in API requests
 
     account = authenticate()
 
@@ -21,13 +20,33 @@ defmodule ExPlayTest do
   end
 
   test "App details" do
-    # Save this account object to later use in API requests
 
     account = authenticate()
 
     assert {:ok, app} = ExPlay.Request.package_details(account, "com.facebook.katana")
 
     assert app.title == "Facebook"
+
+  end
+
+  test "Categories" do
+    account = authenticate()
+
+    assert {:ok, categories} = ExPlay.Request.categories(account)
+
+    Enum.each categories, fn n ->
+       [category | _subcat_id] = tl(Regex.run(~r/cat=([\w]+)&c=([\d]+)/, n["dataUrl"]))
+       IO.puts "#{category} -> #{n["name"]}"
+    end
+
+    assert {:ok, category} = ExPlay.Request.category(account, "GAME")
+    assert "Games" == hd(category.breadcrumb)["name"]
+
+    Enum.each category.category, fn n ->
+        IO.puts n["name"]
+    end
+
+
 
   end
 
