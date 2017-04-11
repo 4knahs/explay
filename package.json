@@ -1,9 +1,25 @@
 {
-  "name": "ExPlay",
+  "name": "explay",
   "description": "Elixir Library for Google Play API",
   "author": "Sheharyar Naseer <hello@sheharyar.me> (https://sheharyar.me/)",
   "license": "MIT",
   "dependencies": {
-    "protobufjs": "^5.0.1"
-  }
+    "protobufjs": "^5.0.2"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4knahs/explay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/4knahs/explay/issues"
+  },
+  "homepage": "https://github.com/4knahs/explay#readme"
 }

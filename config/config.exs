@@ -10,7 +10,6 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :explay, key: :value
 #
 # And access this configuration in your application as:
 #
@@ -18,7 +17,7 @@ use Mix.Config
 #
 # Or configure a 3rd-party app:
 #
-#     config :logger, level: :info
+     config :logger, level: :debug
 #
 
 # It is also possible to import configuration files, relative to this
@@ -28,3 +27,6 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+import_config "credentials.exs"
+
+
