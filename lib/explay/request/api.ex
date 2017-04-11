@@ -25,32 +25,30 @@ defmodule ExPlay.Request.API do
     end
   end
 
-  def category(account, cat_id) do
+  def browse(account, query) do
     ExPlay.Account.verify_authenticated!(account)
 
-    data = get!("browse",[{"c",3},{"cat",cat_id}], api_headers(account, :get))
+    data = get!("browse", query, api_headers(account, :get))
     |> ExPlay.Protobuf.decode
           |> ExUtils.Map.symbolize_keys
           |> handle_response
 
     case data do
-          {:ok,    data} -> {:ok, data.browseResponse}
+          {:ok,    data} -> {:ok, data.browseResponse.category}
           {:error, message} -> {:error, message}
     end
   end
 
+  def category(account, cat_id, sub_cat_id) do
+      browse(account, [{"c",3},{"cat",cat_id}, {"ctr",sub_cat_id}])
+  end
+
+  def category(account, cat_id) do
+    browse(account, [{"c",3},{"cat",cat_id}])
+  end
+
   def categories(account) do
-    ExPlay.Account.verify_authenticated!(account)
-
-    data = get!("browse",[{"c",3}], api_headers(account, :get))
-        |> ExPlay.Protobuf.decode
-              |> ExUtils.Map.symbolize_keys
-              |> handle_response
-
-    case data do
-              {:ok,    data} -> {:ok, data.browseResponse.category}
-              {:error, message} -> {:error, message}
-    end
+    browse(account, [{"c",3}])
   end
 
   @doc """

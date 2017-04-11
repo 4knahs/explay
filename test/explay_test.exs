@@ -40,9 +40,9 @@ defmodule ExPlayTest do
     end
 
     assert {:ok, category} = ExPlay.Request.category(account, "GAME")
-    assert "Games" == hd(category.breadcrumb)["name"]
+    assert "Action" == hd(category)["name"]
 
-    Enum.each category.category, fn n ->
+    Enum.each category, fn n ->
         IO.puts n["name"]
     end
 
