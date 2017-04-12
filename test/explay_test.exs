@@ -45,10 +45,13 @@ defmodule ExPlayTest do
     Enum.each category, fn n ->
         IO.puts n["name"]
     end
-
-
-
   end
+
+#  test "Download App" do
+#    account = authenticate()
+#
+#    ExPlay.Request.download!(account, "com.facebook.katana", "/tmp/com.facebook.katana.apk")
+#  end
 
 
 end
