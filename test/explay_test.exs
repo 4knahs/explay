@@ -47,11 +47,11 @@ defmodule ExPlayTest do
     end
   end
 
-#  test "Download App" do
-#    account = authenticate()
-#
-#    ExPlay.Request.download!(account, "com.facebook.katana", "/tmp/com.facebook.katana.apk")
-#  end
+  test "Download App" do
+    account = authenticate()
+
+    ExPlay.Request.download!(account, "com.facebook.katana", "/tmp/com.facebook.katana.apk")
+  end
 
 
 end
