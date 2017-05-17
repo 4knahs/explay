@@ -27,6 +27,8 @@ defmodule ExPlayTest do
 
     assert app.title == "Facebook"
 
+    IO.inspect app
+
   end
 
   test "Categories" do
