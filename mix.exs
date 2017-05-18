@@ -2,9 +2,10 @@ defmodule ExPlay.Mixfile do
   use Mix.Project
 
   @app      :explay
+  @fork     :explay_fork
   @name     "ExPlay"
-  @version  "0.1.3"
-  @github   "https://github.com/sheharyarn/#{@app}"
+  @version  "0.1.4"
+  @github   "https://github.com/4knahs/#{@app}"
 
 
   def project do
@@ -50,7 +51,7 @@ defmodule ExPlay.Mixfile do
 
   defp package do
     [
-      name:         @app,
+      name:         @fork,
       files:        ~w(mix.exs lib README.md),
       links:        %{"Github" => @github},
       licenses:     ["MIT"],
