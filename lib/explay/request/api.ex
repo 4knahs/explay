@@ -25,7 +25,10 @@ defmodule ExPlay.Request.API do
     end
   end
 
-  def browse(account, query) do
+  @doc """
+      Attempts to retrieve Category info
+  """
+  def browse(account, query \\ [{"c",3}]) do
     ExPlay.Account.verify_authenticated!(account)
 
     data = get!("browse", query, api_headers(account, :get))
@@ -39,14 +42,24 @@ defmodule ExPlay.Request.API do
     end
   end
 
+  @doc """
+    Attempts to retrieve Category info
+  """
   def category(account, cat_id, sub_cat_id) do
-      browse(account, [{"c",3},{"cat",cat_id}, {"ctr",sub_cat_id}])
+      browse(account, [{"c",3},{"cat",cat_id},{"ctr",sub_cat_id}])
   end
 
+  @doc """
+      Attempts to retrieve Category info
+  """
   def category(account, cat_id) do
     browse(account, [{"c",3},{"cat",cat_id}])
   end
 
+  #c=1 is books, 2 music, 3 apps, 4 movies
+  @doc """
+      Attempts to retrieve Category info
+  """
   def categories(account) do
     browse(account, [{"c",3}])
   end

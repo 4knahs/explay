@@ -10,5 +10,8 @@ defmodule ExPlay.Request do
   defdelegate package_details(account, package),          to: ExPlay.Request.API
   defdelegate package_download_info(account, package),    to: ExPlay.Request.API
   defdelegate categories(account),                        to: ExPlay.Request.API
-  defdelegate category(account, cat_id),       to: ExPlay.Request.API
+  defdelegate category(account, cat_id),                  to: ExPlay.Request.API
+  defdelegate category(account, cat_id, ctr),             to: ExPlay.Request.API
+  defdelegate browse(account, query),                     to: ExPlay.Request.API
+  defdelegate browse(account),                     to: ExPlay.Request.API
 end

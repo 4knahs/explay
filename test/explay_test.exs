@@ -23,34 +23,61 @@ defmodule ExPlayTest do
 
     account = authenticate()
 
-    assert {:ok, app} = ExPlay.Request.package_details(account, "com.facebook.katana")
+    assert {:ok, app} = ExPlay.Request.package_details(account, "com.wb.goog.scribbleremix")
 
-    assert app.title == "Facebook"
+    assert app.title == "Scribblenauts Remix"
+
+    #IO.inspect app
 
   end
 
   test "Categories" do
     account = authenticate()
 
-    assert {:ok, categories} = ExPlay.Request.categories(account)
+    #All categories
+    #assert {:ok, _categories} = ExPlay.Request.categories(account)
 
-    Enum.each categories, fn n ->
-       [category | _subcat_id] = tl(Regex.run(~r/cat=([\w]+)&c=([\d]+)/, n["dataUrl"]))
-       IO.puts "#{category} -> #{n["name"]}"
-    end
+    #IO.inspect ExPlay.Request.browse(account)
 
-    assert {:ok, category} = ExPlay.Request.category(account, "GAME")
-    assert "Action" == hd(category)["name"]
+    #IO.inspect categories
 
-    Enum.each category, fn n ->
-        IO.puts n["name"]
-    end
+    #Filtered category names
+    assert {:ok, cat_names} = ExPlay.Helpers.category_names(account)
+
+    IO.inspect cat_names
+
+    #assert hd(categories)["name"] != hd(cat_names)
+
+    #IO.puts "Checking #{hd(cat_names)}..."
+
+    #Category details and subcategories
+    #assert {:ok, category} = ExPlay.Request.category(account, "GAME")
+
+    #IO.inspect category
+
+    #assert {:ok, category} = ExPlay.Request.category(account, "Game", "Strategy")
+
+    #IO.inspect category
+
+    assert {:ok, subcat} = ExPlay.Helpers.subcategory_names(account)
+
+    IO.inspect subcat
+
+    #Category details and subcategories
+    #assert {:ok, category} = ExPlay.Request.category(account, "FAMILY_PRETEND")
+
+    #IO.inspect category
+
   end
 
-#  test "Download App" do
+#  test "Download Apps" do
 #    account = authenticate()
 #
-#    ExPlay.Request.download!(account, "com.facebook.katana", "/tmp/com.facebook.katana.apk")
+#    apps = ["com.fruitgames.bubbleshooter","com.fruitcandy.blast"]
+#
+#    Enum.each(apps, fn n ->
+#        ExPlay.Request.download!(account, n, "#{Application.get_env(:explay, :downloads)}/#{n}.apk")
+#    end)
 #  end
 
 
